@@ -33,7 +33,9 @@ number@type:filename
 
 For example:
 0@N:page0.txt
+
 1@N:buypastry.txt
+
 etc.
 
 The number says what pages is being created, and the filename specifies the
@@ -67,8 +69,11 @@ Anything that violates these constraints is an error:
   
 For example, the following is legal:
 0@N:page0.txt
+
 1@N:page1.txt
+
 2@N:page2.txt
+
 2:1:Something
 1:2:Another thing
 0:1:A choice
