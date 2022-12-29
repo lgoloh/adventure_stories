@@ -1,0 +1,37 @@
+Story::Story() :
+  pages(vector<Page *>()),
+  page_refs(map<size_t, vector<size_t> >()),
+  hasWinPage(false),
+  hasLosePage(false),
+  var_map(map<string, long>()) {
+ }
+
+Story::Story(const Story & rhs) :
+  pages(rhs.pages),
+  page_refs(rhs.page_refs),
+  hasWinPage(rhs.hasWinPage),
+  hasLosePage(rhs.hasLosePage),
+  var_map(rhs.var_map) {
+ }
+ 
+Story & Story::operator=(const Story & rhs) {
+  if (this != &rhs) {
+    vector<Page *> temp;
+    temp.resize(rhs.pages.size());
+    for (size_t i = 0; i < rhs.pages.size(); i++) {
+      temp[i] = new Page(*(rhs.pages[i]));
+    }
+    pages = temp;
+    page_refs = rhs.page_refs;
+    var_map = rhs.var_map;
+    hasWinPage = rhs.hasWinPage;
+    hasLosePage = rhs.hasLosePage;
+  }
+  return *this;
+}
+
+Story::~Story() {
+  for (size_t i = 0; i < pages.size(); i++) {
+    delete pages[i];
+  }
+}

@@ -1,0 +1,42 @@
+#include "choice.hpp"
+#include <sstream>
+
+Choice::Choice() : source(0), destination(0), text(""), available(true) {
+}
+Choice::Choice(size_t src, size_t dest, string text) :
+    source(src), destination(dest), text(text), available(true) {
+}
+Choice::Choice(const Choice & rhs) :
+    source(rhs.source), destination(rhs.destination), text(rhs.text) {
+}
+
+Choice::~Choice() {}
+
+Choice & Choice::operator=(const Choice & rhs) {
+  if (this != &rhs) {
+    string temp = rhs.text;
+    std::swap(temp, text);
+    source = rhs.source;
+    destination = rhs.destination;
+  }
+  return *this;
+}
+size_t Choice::getSource() const {
+  return source;
+}
+
+size_t Choice::getDest() const {
+  return destination;
+}
+
+string Choice::getText() const {
+  return text;
+}
+
+bool Choice::isAvailable() const {
+  return available;
+}
+
+void Choice::setSource(size_t src) {
+  source = src;
+}

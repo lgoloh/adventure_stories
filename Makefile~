@@ -1,0 +1,12 @@
+ 1CFLAGS=-std=gnu++98 -pedantic -Wall -Werror -ggdb3
+ 2PROGS=cyoa-step1 cyoa-step2 cyoa-step3 cyoa-step4
+ 3OBJS=$(patsubst %,%.o,$(PROGS)) cyoa.o page.o choice.o
+ 4all: $(PROGS)
+ 5cyoa-step%: cyoa-step%.o cyoa.o page.o choice.o story.o path.o
+ 6        g++ -o $@ $^
+ 7%.o: %.cpp %.hpp
+ 8        g++ $(CFLAGS) -c $<
+ 9
+10.PHONY: clean
+11clean:
+12        rm -f *~ $(PROGS) $(OBJS)
