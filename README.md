@@ -10,3 +10,8 @@ This project generates 4 executables:
     - Applies a common graph algorithm to traverse the story and find all winning paths
    
 - cyoa-step4: Adds extra functionality to the gameplay
+
+Structure:
+src >> header: all header files with definitions of classes
+src >> impl: all implementations of classes
+
