@@ -19,20 +19,20 @@ void printPgDiv() {
 void printChoices(const vector<Choice *> & list, const map<string, long> * vars) {
     for (size_t i = 0; i < list.size(); i++) {
         std::cout << " " << i + 1 << ". ";
-        if (list[i]->isConditional()) {~
-      long val = vars->at(list[i]->getVarName());
-      if (val != list[i]->getValue()) {
-         list[i]->setAvailability(false);
-         std::cout << "<UNAVAILABLE>" << '\n';
-      }
-      else {
-	std::cout << list[i]->getText() << '\n';
-      }
+	if (list[i]->isConditional()) {
+	  long val = vars->at(list[i]->getVarName());
+	  if (val != list[i]->getValue()) {
+	    list[i]->setAvailability(false);
+	    std::cout << "<UNAVAILABLE>" << '\n';
+	  }
+	  else {
+	    std::cout << list[i]->getText() << '\n';
+	  }
+	}
+	else {
+	  std::cout << list[i]->getText() << '\n';
+	}
     }
-    else {
-      std::cout << list[i]->getText() << '\n';
-    }
-  }
 }
 
 bool printWinOrLose(const Page * pg) {
@@ -117,12 +117,6 @@ Page & Page::operator=(const Page & rhs) {
     filename = rhs.filename;
   }
   return *this;
-}
-
-Page::~Page() {
-  for (size_t i = 0; i < choices.size(); i++) {
-    delete choices[i];
-  }
 }
 
 Page::~Page() {
